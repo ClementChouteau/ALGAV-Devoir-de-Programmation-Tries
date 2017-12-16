@@ -1,0 +1,266 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{graphicx}
+\usepackage{auto-pst-pdf}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{csquotes}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{white},
+    basicstyle=\scriptsize\color{black}\ttfamily,
+    frame=single
+}
+
+\usepackage{graphicx}
+\usepackage{amsmath} 
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\title{Projet Tries - ALGAV\\Master STL}
+
+\author{Clément \textsc{Chouteau}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Structure du projet}
+Le but du projet est d'implémenter une bibliothèque logicielle permettant d'utiliser une structure de donnée de type dictionnaire,
+et d'effectuer principalement des opérations d'insertion, de rechercher et de suppression de mots.
+J'ai choisi le langage C++, et le projet comporte 1500 lignes de code,
+Les structures de données sont génériques et supportent tout type de caractère (char), de plus elles peuvent êtres paramétrées par des classes d'équilibrage ou de gestion de noeuds.
+
+L'intégralité du sujet est traité: les tries hybride et patricia sont implémentés, la fusion de patricia, les conversions, la visualisation des graphes.
+
+Les deux types de tries (Hybride et Patricia) implémentent l'interface Trie définie dans "Trie.h".
+\lstset {language=C++}
+\begin{lstlisting}
+template<typename T>
+class Trie {
+public:
+	virtual ~Trie() {}
+
+	virtual bool Recherche(const std::vector<T>&) const = 0;
+	virtual long ComptageMots() const = 0;
+	virtual std::vector< std::vector<T> > ListeMots() const = 0;
+	virtual long Prefixe(const std::vector<T>&) const = 0;
+
+	virtual void Suppression(const std::vector<T>&) = 0;
+	virtual void AjoutMot(const std::vector<T>&) = 0;
+};
+\end{lstlisting}
+
+
+Les tests sont effectués à l'aide des fonctions définies dans le fichier "TrieTest.h", les classes de Tries développés sont essentiellement testées l'une par rapport à l'autre, les fonctions de fusion et de conversions sont testées en vérifiant qu'une instance de taille importante est transformée comme il faut.
+\lstset {language=C++}
+\begin{lstlisting}
+template<typename GivenTrie>
+void assertTrie();
+
+template<typename GivenTrie1, typename GivenTrie2>
+void assertClassesTrieEgaux(const std::vector< std::vector<char> >&);
+
+template<typename T>
+void assertInstancesTrieEgaux(Trie<T>& t1, Trie<T>& t2);
+\end{lstlisting}
+
+Les tests de performance sont effectués à l'aide de l'ensemble des mots de l'oeuvre de Shakespeare (avec doublons) pour un total de 23086 mots uniques.
+Nous considérerons dans ce rapport que le but est d'améliorer les performances par rapport à ce jeu de données (donc alphabet inférieur à $256$ caractères, lettres plus fréquentes que d'autres).
+
+\section{Structures de données}
+Sans prendre en compte la partie équilibrage le TrieHybride s'implémente:
+\lstset {language=C++}
+\begin{lstlisting}
+template <typename T>
+class TrieHybrideNoeud {
+public:
+	T l;
+	bool finmot;
+	TrieHybrideNoeud<T>* g;
+	TrieHybrideNoeud<T>* c;
+	TrieHybrideNoeud<T>* d;
+};
+\end{lstlisting}
+
+Le TriePatricia se compose de noeuds contenant des cases, qui s'implémentent:
+\lstset {language=C++}
+\begin{lstlisting}
+template <typename T, template< typename, typename > class Map>
+class Case {
+public:
+	std::vector<T> mot;
+	TriePatriciaNoeud<T, Map>* lien;
+};
+\end{lstlisting}
+
+\lstset {language=C++}
+\begin{lstlisting}
+template <typename T, template< typename, typename > class Map>
+class TriePatriciaNoeud {
+public:
+	bool finmot;
+	Map<T, Case<T, Map>> noeuds;
+};
+\end{lstlisting}
+
+J'ai choisi de ne pas imposer le choix d'un de caractère de fin de mot pour les TriePatricia contrairement à ce qui est suggéré, pour cela je stocke un (bool) finmot dans chaque noeud.
+Et je raccourcit le cas où il n'y a qu'un seul mot sur un lien, on considère que si il y a un mot non vide sans lien alors le mot est dans le dictionnaire.
+
+\subsection{Conteneurs de noeuds de Patricia}
+Les tries Patricia sont paramamétrables par une structure associative $T \longrightarrow Case<T, Map>$, plusieurs choix sont envisageables:
+\begin{description}
+\item[Tableau de taille $|A|$] tableau permettant de contenir toutes les lettres: c'est à dire un $R$-trie, c'est trop lourd en mémoire, de plus cela impose que les lettres de l'alphabet sont consécutives (ou bien imposer une traduction).
+\item[Liste] la recherche et l'insertion prennent du temps et de nombreuses indirections, le parcours complet du Trie est très efficace, cela revient à faire un arbre de la Briandais autorisant des mots dans les noeuds.
+\item[ABR sur les lettres] cela revient à faire un trie Hybride équilibré à chaque niveau et permettant de mettre des mots en plus de lettres.
+\item[Table de hachage] 	permet une recherche en temps constant et une insertion constante amortie, la suppression est moins efficace, l'énumération dans l'ordre des éléments de l'arbre est ralentie par le tri des tables de hachage.
+\end{description}
+J'ai retenu le choix de la table de hachage pour la rapidité d'insertion, de recherche et l'efficacité mémoire.
+
+\subsection{Noeuds laissés lors d'une suppression "naïve"}
+\begin{description}
+\item[Hybride]
+les \emph{feuilles}: pas de fin de mot, ni de noeuds. \\
+les \emph{branchements}: noeuds qui ne contiennent rien au centre $x\rightarrow c$, ces noeuds peuvent êtres supprimés mais nécessitent d'insérer les sous arbres $x\rightarrow g$ et $x\rightarrow d$ dans le père de $x$.
+\item[Patricia]
+les \emph{feuilles}: le noeud courant ne contient pas de fin de mot, et aucun mot
+\end{description}
+
+\section{Equilibrage des Hybride}
+Remarquons que tenir en compte les liens $x->c$ mots a pour effet de réduire le pire cas, ce qui peut être utile si le critère principal est la \emph{réactivité} de l'application.
+
+On suppose maintenant que l'on prend en compte seulement les liens gauche ou droite dans l'arbre.
+On peut équilibrer selon:
+\begin{itemize}
+\item on peut équilibrer selon un seul niveau (mais cela ne regarde pas le déséquilibre dans les sous arbres une fois que l'on continue au centre), la complexité est alors en $O(lg(|A|) |w|)$ dans le pire des cas, mais comme l'alphabet $A$ est petit a priori, il y a peu de différence entre $|A|$ et $lg(|A|)$.
+\item on peut tenter de minimiser les indirections (gauche, droite) nécessaire pour trouver un mot, en équilibrant l'arbre selon la hauteur totale en nombre d'indirections de la racine a une feuille, mais l'arbre n'est plus un AVL et l'équilibrage est plus compliqué.
+\end{itemize}
+
+\section{Conversions Hybride, Patricia}
+
+\begin{description}
+\item[Patricia $\Rightarrow$ Hybride]
+Conversion peu efficace (115.596 ms) à cause du coût du tri des tables de hachage présents dans les noeuds des Patricia.
+Notons $n_1, ..., n_k$ les tailles des noeuds (en nombre de cases) des TriePatriciaNoeud
+On effectue pour chaque TriePatriciaNoeud, le tri des cases $O(n_i lg(n_i))$, puis pour chaque case $c$ on effectue des opérations en $O(n_i)$, puis on traite le lien associé à la case $c$.
+Le coût global (en temps) est donc en $O()$ de la somme des $n_i lg(n_i)$.
+Ce n'est pas optimal (linéaire en la taille du TriePatricia donné).
+\item[Hybride $\Rightarrow$ Patricia]
+Conversion très efficace (10.581 ms).
+L'algorithme s'exécute en temps linéaire en la taille du TrieHybride donné en entrée.
+\end{description} 
+
+On peut obtenir la complexité théorique optimale \emph{pour la conversion} en utilisant des listes chaînées ordonnées pour stocker les cases des TriePatriciaNoeuds, au lieu des tables de hachage.
+
+\section{Fusions de Patricia}
+La fusion des TriePatricia est assez efficace: (65ms) de création de chaque PatriciaTrie, puis (10ms) de fusion, donc environ (75ms) pour une création parallèle de tries (contre (130ms) pour la création en une seule passe).
+
+L'algorithme se décompose en 3 fonctions mutuellement récursives dont le but est de permettre d'insérer des morceaux d'un TriePatricia dans un nouveau TriePatricia
+\begin{description}
+\item[FusionNoeud] crée une copie d'un des TriePatriciaNoeud puis insère l'autre dedans.
+\item[InsererNoeud] insère un TriePatriciaNoeud dans un autre TriePatriciaNoeud et retourne le résultat.
+\item[InsererCase] insère une Case dans un TriePatriciaNoeud et retourne le résultat.
+\end{description}
+
+Analysons la complexité de la fusion de deux tries Patricia $T1, T2$,
+Hors cas triviaux, la fonction FusionNoeud s'exécute en $O(T2)$ plus la complexité de InsererNoeud pour $T1, T2$ en arguments.
+la complexité de InsererNoeud est la complexité de InsererCase(c1, t2) pour toutes les cases $c1 \in T1$.
+
+
+
+Pour créer un TriePatricia, l'ordre des Cases dans les noeuds n'importe pas donc on utilise seulement l'itération non ordonnée et l'accès par indice, tout cela est en temps constant amorti.
+
+La fusion de deux TriePatricia est très bien parallélisable, puisqu'elle se décompose en la fusion des cases de même lettre.
+
+\section{Complexité des fonctions de Trie}
+
+Une étoile $*$ dans un $O()$ indique une complexité amortie.
+On notera $w$ le mot pris en entré de certaines fonctions qui demandent un mot, et $|w|$ sa taille, on notera $A$ l'alphabet et $|A|$ le nombre de lettres dans l'alphabet.
+Le nombre $n$ désigne le nombre de noeuds utiles dans le TrieHybride, et $f$, $b$ désignent respectivement le nombre de noeuds inutiles (feuilles, branchements).
+Dans notre implémentation nous supprimons les feuilles, donc $f = 0$.
+
+\begin{tabular}{lrrr}
+\hline
+\multicolumn{4}{c}{Complexité (pire cas)} \\
+\cline{2-4}
+	& Hybride & HybrideAVL & Patricia \\
+\hline
+Recherche(w)      & $O(|A|\cdot|w|)$    & $O(lg(|A|)\cdot|w|)$	& $O(|w|)$ \\
+ComptageMots      & $O(n+f+b)$    & $O(n+f+b)$	& $O()$ \\
+Prefixe(w)      & $O()$    & $O()$	& $O()$ \\
+Suppression(w)      & $O()$    & $O()$	& $O()$ \\
+AjoutMot(w)      & $O(|A|\cdot|w|)$    & $O()$	& $O(|w|^*)$ \\
+\hline
+\end{tabular}
+
+\section{Performance de l'implémentation}
+Les performances des Hybride et Patricie sont testés en insérant l'ensemble des mots de l'oeuvre de shakespeare (pour un total de 23086 mots).
+Le Hybride est très efficace en temps d'exécution, le Patricia est potentiellement plus efficace en mémoire. La fusion est potentiellement rentable en parallèle, et l'une des conversions est particulièrement efficace.
+
+\begin{lstlisting}[style=DOS]
+TrieHybride<char>
+Ajout des mots: 75.481 ms
+Recherche des mots: 56.327 ms
+Comptage des mots: 23086 mots, 1.302 ms
+Suppression des mots: 82.505 ms
+
+TrieHybride<char, AVL>
+Ajout des mots: 133.915 ms
+Recherche des mots: 64.954 ms
+Comptage des mots: 23086 mots, 1.406 ms
+Suppression des mots: 96.129 ms
+
+TriePatricia<char>
+Ajout des mots: 136.725 ms
+Recherche des mots: 154.368 ms
+Comptage des mots: 23086 mots, 0.897 ms
+Suppression des mots: 277.066 ms
+
+TrieHybride<char> (1/2) AjoutMot: 17262 63.824 ms
+TrieHybride<char> (2/2) AjoutMot: 16929 61.573 ms
+Fusion TrieHybride<char> (1/2) (2/2): 23086 8.693 ms
+
+Conversion TrieHybride<char> => TriePatricia<char>: 23086 10.38 ms
+Conversion TriePatricia<char> => TrieHybride<char>: 23086 116.295 ms
+\end{lstlisting}
+
+Il est difficile de mesurer l'utilisation de la mémoire, cela serait une bonne métrique de performance des structures de données, car par exemple le TrieHybride utilise 3 pointeurs 64 bits (24 octets au total) pour stocker 1 octet.
+
+\section{Visualisation des structures de données}
+
+Les graphes ci dessous sont une représentation graphique des structures de données, ils sont tous construits à partir de l'ensemble des mots de la phrase suivante:
+\begin{displayquote}
+"A quel genial professeur de dactylographie sommes nous redevables de la superbe phrase ci dessous, un modele du genre, que toute dactylo connait par coeur puisque elle fait appel a chacune des touches du clavier de la machine a ecrire ?"
+\end{displayquote}
+
+Ces visualisations permettent de remarquer plusieurs choses:
+\begin{itemize}
+\item Les TrieHybride comportent énormément de noeuds, un allocateur de bloc de taille fixe permettrait sûrement d'améliorer les performances.
+\item Le conteneurs de noeuds de type \emph{Tableau} pour TriePatricia (avec $|A|$ noeuds) vont contenir de nombreuses cases vides, particulièrement pour les noeuds proches des feuilles.
+\end{itemize}
+
+\begin{figure}[H]
+   \begin{minipage}[c]{.46\linewidth}
+   \includegraphics[width=230pt]{TrieHybride.ps} \hfill
+   \end{minipage}
+   \begin{minipage}[c]{.46\linewidth}
+   \includegraphics[width=230pt]{TrieHybrideAVL.ps}
+   \end{minipage}
+   
+     \caption{TrieHybride sans équilibrage (à gauche) et avec équilibrage (à droite). Les flêches bleues, vertes, rouges représentent respectivement des liens gauche, centre, droite.
+     }
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=480pt]{TriePatricia.ps}
+
+\caption{La structure de donnée TriePatricia peut être plus compacte (ici seulement 9 noeuds).}
+\end{figure}
+
+\end{document}

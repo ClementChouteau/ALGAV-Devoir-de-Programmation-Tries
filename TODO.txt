@@ -1,0 +1,11 @@
+Problemes quand on définit du code non template dans un hpp
+
+Mettre des hashmap au lieu de array dans les TriePatriciaNoeud
+
+Implémenter une small object allocator pour les TrieHybride
+
+Permettre de changer de fonction de hauteur dans l'Equilibrage, equilibrer selon la hauteur G D totale.
+
+Créer une facade pour std::map des string
+
+METRIQUE INTERESSANTE: NOMBRE D'OCTETS PAR LETTRE UTILISES (EN MOYENNE SUR TOUT LE TRIE)

@@ -1,0 +1,222 @@
+version: 1
+creator: callgrind-3.10.0
+pid: 3605
+cmd:  /home/clem120/Dropbox/ALGAV/Projet-Tries/release/Projet-Tries
+part: 7
+
+
+desc: I1 cache: 
+desc: D1 cache: 
+desc: LL cache: 
+
+desc: Timerange: Basic block 451366948 - 468444461
+desc: Trigger: dump
+
+positions: line
+events: Ir
+summary: 60277466
+
+
+ob=(7) /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.20
+fl=(75) ???
+fn=(1184) operator delete(void*)
+0 121757
+cob=(3) /lib/x86_64-linux-gnu/libc-2.19.so
+cfi=(97) /build/glibc-6V9RKT/glibc-2.19/malloc/malloc.c
+cfn=(1190) free
+calls=121757 2917 
+0 10836297
+0 121757
+
+fn=(946) operator new(unsigned long)
+0 794577
+cob=(3)
+cfi=(97)
+cfn=(952) malloc
+calls=113511 2876 
+0 10897056
+0 113511
+0 454044
+
+ob=(1) /lib/x86_64-linux-gnu/ld-2.19.so
+fl=(1) ???
+fn=(0) 0x0000000000001130
+cob=(8) /home/clem120/Dropbox/ALGAV/Projet-Tries/release/Projet-Tries
+cfi=(77) ???
+cfn=(464) 0x0000000000402bfe
+calls=0 0 
+0 60277466
+
+ob=(3)
+fl=(78) /build/glibc-6V9RKT/glibc-2.19/csu/libc-start.c
+fn=(472) (below main)
+cob=(8)
+cfi=(77)
+cfn=(850) main
+calls=0 0 
+287 60277466
+
+fl=(97)
+fn=(952)
+2876 454044
++5 227022
++1 227022
++3 227022
++2 908088
++4 340533
+cfn=(970) _int_malloc
+calls=113511 3302 
+* 6243105
++1 113511
+-1 113511
++1 113511
++11 454044
++1 908088
++3 567555
+
+fn=(970)
+3302 908088
++30 1021599
++8 227022
++2 340533
++1 113511
++1 113511
+-1 227022
++5 227022
++3 567555
++1 113511
+-1 113511
++1 227022
+1862 113511
+3743 113511
+1862 227022
+3806 1021599
+3355 567555
+
+fn=(1192) _int_free
+3814 974048
++13 121756
+-13 121756
++13 243512
++6 487024
++1 243512
++11 487024
++13 365268
++11 487024
++1 365268
+1869 121756
+3894 121756
+1869 243512
+3896 365268
++1 243512
++1 121756
++3 121756
+-3 121756
++9 365268
+-5 487024
++14 487024
++2 121756
++2 730536
++2 487024
+4087 974048
+
+fn=(1190)
+2917 243514
++1 243514
++6 243514
++5 121757
+-2 121757
++2 243514
++16 365271
++1 243512
+cfn=(1192)
+calls=121756 3814 
+* 9009944
+
+ob=(8)
+fl=(77)
+fn=(464)
+cob=(3)
+cfi=(78)
+cfn=(472)
+calls=0 133 
+0 60277466
+
+fn=(1756) TrieHybride<char, None>::Suppression(std::vector<char, std::allocator<char> >)
+0 567555
+cfn=(1758) TrieHybrideNoeud<char, None>* SuppressionNoeud<char, None>(TrieHybrideNoeud<char, None>*, std::vector<char, std::allocator<char> > const&, long)
+calls=113511 0 
+0 28147413
+0 340536
+
+fn=(1758)
+0 1667608
+cfn=(1759) TrieHybrideNoeud<char, None>* SuppressionNoeud<char, None>(TrieHybrideNoeud<char, None>*, std::vector<char, std::allocator<char> > const&, long)'2
+calls=16684 0 
+0 1853507
+0 849404
+cfn=(1759)
+calls=12024 0 
+0 2131177
+0 193348
+cfn=(1759)
+calls=84650 0 
+0 21283067
+0 169302
+
+fn=(1759)
+0 14197253
+cfn=(1759)
+calls=268499 0 
+0 30538896
+0 8298693
+cfn=(1759)
+calls=311344 0 
+0 49528219
+0 1160338
+cfn=(1759)
+calls=268823 0 
+0 43253473
+0 663292
+cfn=(1760) TrieHybrideNoeud<char, None>::~TrieHybrideNoeud()
+calls=8245 0 
+0 140165
+0 24735
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=8245 0 
+0 750295
+0 8245
+0 24735
+
+fn=(1622) std::string performanceLog<TrieHybride<char, None> >(std::vector<std::vector<char, std::allocator<char> >, std::allocator<std::vector<char, std::allocator<char> > > > const&)
+0 7157610
+cfn=(1756)
+calls=113511 0 
+0 29055504
+0 454048
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=113512 0 
+0 10329516
+0 113512
+0 681066
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=113511 0 
+0 12259188
+0 113511
+0 113511
+
+fn=(850)
+cfn=(1622)
+calls=0 0 
+0 60277466
+
+fn=(1760)
+0 140165
+
+totals: 60277466

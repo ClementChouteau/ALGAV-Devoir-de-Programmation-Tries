@@ -1,0 +1,824 @@
+version: 1
+creator: callgrind-3.10.0
+pid: 3605
+cmd:  /home/clem120/Dropbox/ALGAV/Projet-Tries/release/Projet-Tries
+part: 10
+
+
+desc: I1 cache: 
+desc: D1 cache: 
+desc: LL cache: 
+
+desc: Timerange: Basic block 3735485070 - 7202889287
+desc: Trigger: dump
+
+positions: line
+events: Ir
+summary: 14636506360
+
+
+ob=(7) /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.20
+fl=(75) ???
+fn=(1256) std::__detail::_Prime_rehash_policy::_M_next_bkt(unsigned long) const
+0 102201345
+cob=(4) /lib/x86_64-linux-gnu/libm-2.19.so
+cfi=(54) /build/glibc-6V9RKT/glibc-2.19/math/../sysdeps/x86_64/fpu/multiarch/s_ceil.S
+cfn=(1262) __ceil_sse41
+calls=6813423 37 
+0 13626846
+0 6813423
+0 68134230
+
+fn=(1184) operator delete(void*)
+0 47509691
+cob=(3) /lib/x86_64-linux-gnu/libc-2.19.so
+cfi=(97) /build/glibc-6V9RKT/glibc-2.19/malloc/malloc.c
+cfn=(1190) free
+calls=47509691 2917 
+0 4233335083
+0 47509691
+
+fn=(946) operator new(unsigned long)
+0 332316712
+cob=(3)
+cfi=(97)
+cfn=(952) malloc
+calls=47473816 2876 
+0 4566188176
+0 47473816
+0 189895264
+
+ob=(1) /lib/x86_64-linux-gnu/ld-2.19.so
+fl=(1) ???
+fn=(0) 0x0000000000001130
+cob=(8) /home/clem120/Dropbox/ALGAV/Projet-Tries/release/Projet-Tries
+cfi=(77) ???
+cfn=(464) 0x0000000000402bfe
+calls=0 0 
+0 14636506360
+
+ob=(3)
+fl=(108) /build/glibc-6V9RKT/glibc-2.19/string/../sysdeps/x86_64/memset.S
+fn=(1270) memset
+53 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++2 20445675
++1 20445675
++8 14753548
++9 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 20445675
++1 26137802
++3 5692127
++1 5692127
++1 5692127
++1 5692127
++1 5692127
++1 5692127
++1 5692127
+-6 293727
++1 293727
++1 293727
++1 293727
++1 293727
++1 293727
++1 293727
++1 5692127
+
+fl=(78) /build/glibc-6V9RKT/glibc-2.19/csu/libc-start.c
+fn=(472) (below main)
+cob=(8)
+cfi=(77)
+cfn=(850) main
+calls=0 0 
+287 14636506360
+
+fl=(97)
+fn=(952)
+2876 189895264
++5 94947632
++1 94947632
++3 94947632
++2 379790528
++4 142421448
+cfn=(970) _int_malloc
+calls=47473816 3302 
+* 2619761720
++1 47473816
+-1 47473816
++1 47473816
++11 189895264
++1 379790528
++3 237369080
+
+fn=(970)
+3302 379790528
++30 427264344
++8 94947632
++2 141799896
++1 47266632
++1 47266632
+-1 94533264
++5 94533264
++3 236333155
++1 47266631
+-1 47266631
++1 94533262
++25 414370
++2 414370
++1 414370
++2 621555
++2 30
++4 15
++1 30
++5 15
++1 15
++1 15
++2 45
+1862 47473816
+3743 47473816
+1862 94947632
+3806 427264344
+-16 828680
++2 5179250
+3462 414340
+-20 414340
++66 34
++1 51
++1 17
++50 102
++7 17
+-6 17
++1 17
++1 17
++1 17
++3 17
+3442 621561
++3 207186
+-1 207186
++1 414372
++1 414372
++3 207186
++10 828744
++34 207186
+-5 207186
++1 207186
++4 207186
++13 34
+-45 1
+-1 2
+3576 2
++73 1
++1 1
++1 1
+-1 1
++3 1
+-2 1
++2 1
+-1 2
++6 6
++16 8
++2 16
+-4 18
++8 1
++3 2
+3496 207169
+-1 207169
++1 621507
+3355 236333155
+3692 3
++3 2
++5 1
+-3 1
++3 1
+-3 1
++3 8
++3 2
++15 1
+-5 1
++6 2
++11 1
+-6 1
++1 1
++1 1
++1 1
++3 1
++1 1
++1 2
++5 7
++2 2
+-2 1
++2 1
++1 2
+
+fn=(1192) _int_free
+3814 380077528
++13 47509691
+-13 47509691
++13 95019382
++6 190038764
++1 95019382
++11 190038764
++13 142529073
++11 189210000
++1 141907500
+1869 47302500
+3894 47302500
+1869 94605000
+3896 141907500
++1 94605000
++1 47302500
++3 47302500
+-3 47302500
++9 141907500
+-5 189210000
++14 189209996
++2 47302500
++2 283815000
++2 189209996
+4087 378420008
+3933 414382
++1 207191
+3825 207191
+3934 414382
++18 207191
+-4 207191
++4 414382
++6 414382
++8 621573
++6 414382
++1 414382
++1 414382
+1869 621573
+3983 414382
++7 414382
++5 414382
++4 207191
++9 207191
+-1 207191
++2 414382
++7 207191
+-2 207191
++1 207191
++1 207191
++5 207191
++1 207191
++2 621573
++1 207191
++30 414382
+3943 1243146
++2 414382
+4075 621573
++1 621573
++1 828764
++10 1657528
+
+fn=(1190)
+2917 95019382
++1 95019382
++6 95019382
++5 47509691
+-2 47509691
++2 95019382
++16 142529073
++1 95019382
+cfn=(1192)
+calls=47509691 3814 
+* 3520689718
+
+ob=(8)
+fl=(77)
+fn=(1854) std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> > >::_M_deallocate_nodes(std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false>*) [clone .isra.156]
+0 53462032
+cfn=(1856) Case<char, UnorderedMap>::~Case()
+calls=5388 0 
+0 571128
+cfn=(1857) Case<char, UnorderedMap>::~Case()'2
+calls=1252762 0 
+0 290856490
+0 13879827
+cfn=(1856)
+calls=7098 0 
+0 752388
+cfn=(1857)
+calls=4619511 0 
+0 3717697377
+0 17654280
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=5884760 0 
+0 535513160
+0 5884760
+0 44055812
+
+fn=(1855) std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> > >::_M_deallocate_nodes(std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false>*) [clone .isra.156]'2
+0 55606760
+cfn=(1857)
+calls=5560676 0 
+0 1308245422
+0 26706408
+cfn=(1857)
+calls=8902136 0 
+0 3330750246
+0 43388442
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=14462814 0 
+0 1316116074
+0 14462814
+0 51168340
+
+fn=(1294) long longueurPlusLongPrefixe<char>(std::vector<char, std::allocator<char> > const&, std::vector<char, std::allocator<char> > const&, long)
+0 26881989
+
+fn=(1852) std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> > >::_M_allocate_node<std::pair<char const, Case<char, UnorderedMap> > const&>(std::pair<char const, Case<char, UnorderedMap> > const&)
+0 35233596
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=5872266 0 
+0 634204728
+0 5872266
+0 41105862
+cfn=(1847) Case<char, UnorderedMap>::Case(Case<char, UnorderedMap> const&)'2
+calls=5872266 0 
+0 6904145000
+0 29361325
+
+fn=(1853) std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> > >::_M_allocate_node<std::pair<char const, Case<char, UnorderedMap> > const&>(std::pair<char const, Case<char, UnorderedMap> > const&)'2
+0 86776590
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=14462765 0 
+0 1561978620
+0 14462765
+0 101239355
+cfn=(1847)
+calls=14462765 0 
+0 8102489293
+0 72313825
+
+fn=(1272) std::__detail::_Map_base<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](char const&)
+0 44994172
+
+fn=(1846) Case<char, UnorderedMap>::Case(Case<char, UnorderedMap> const&)
+0 43529453
+cfn=(1282) std::vector<char, std::allocator<char> >::operator=(std::vector<char, std::allocator<char> > const&)
+calls=3957223 0 
+0 332883208
+0 14377195
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=1252763 0 
+0 135298404
+0 1252763
+0 12527630
+cob=(7)
+cfi=(75)
+cfn=(1256)
+calls=1252763 0 
+0 35077364
+0 1252763
+0 6263815
+cfn=(1264) std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.164]
+calls=1252763 0 
+0 191813269
+0 7516578
+cfn=(1848) std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::operator=(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&)
+calls=1252763 0 
+0 7951186676
+0 27700554
+
+fn=(1847)
+0 223685341
+cfn=(1282)
+calls=20335031 0 
+0 1980309776
+0 72126413
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=5560660 0 
+0 600551280
+0 5560660
+0 55606600
+cob=(7)
+cfi=(75)
+cfn=(1256)
+calls=5560660 0 
+0 155698480
+0 5560660
+0 27803300
+cfn=(1264)
+calls=5560660 0 
+0 851375636
+0 33363960
+cfn=(1849) std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::operator=(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&)'2
+calls=5560660 0 
+0 10852646970
+0 142345217
+
+fn=(1850) void std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_assign<std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::operator=(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&)::{lambda(std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> const*)#2}>(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&, std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::operator=(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&)::{lambda(std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> const*)#2} const&)
+0 138483123
+cfn=(1852)
+calls=4619503 0 
+0 6965685600
+0 12997295
+cfn=(1852)
+calls=1252763 0 
+0 684237177
+0 2505524
+
+fn=(1851) void std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_M_assign<std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::operator=(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&)::{lambda(std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> const*)#2}>(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&, std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::operator=(std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> > const&)::{lambda(std::__detail::_Hash_node<std::pair<char const, Case<char, UnorderedMap> >, false> const*)#2} const&)'2
+0 384221667
+cfn=(1853)
+calls=8902105 0 
+0 6944122220
+0 34486190
+cfn=(1853)
+calls=5560660 0 
+0 2995138228
+0 11121320
+
+fn=(1860) std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::clear()
+0 5032600
+cfn=(1854)
+calls=1258150 0 
+0 4612193034
+0 6290755
+cob=(3)
+cfi=(108)
+cfn=(1270)
+calls=1258151 53 
+0 31974322
+0 1258151
+0 5032604
+
+fn=(1861) std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::clear()'2
+0 22242704
+cfn=(1855)
+calls=5560676 0 
+0 6146444506
+0 27803390
+cob=(3)
+cfi=(108)
+cfn=(1270)
+calls=5560678 53 
+0 134660929
+0 5560678
+0 22242712
+
+fn=(850)
+cfn=(1840) std::string performanceLog<TriePatricia<char, UnorderedMap> >(std::vector<std::vector<char, std::allocator<char> >, std::allocator<std::vector<char, std::allocator<char> > > > const&)
+calls=0 0 
+0 14636506360
+
+fn=(1840)
+0 25532738
+cfn=(1862) TriePatricia<char, UnorderedMap>::Suppression(std::vector<char, std::allocator<char> >)
+calls=407091 0 
+0 14524670330
+0 1628364
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=407091 0 
+0 37045281
+0 407091
+0 2442546
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=407091 0 
+0 43965828
+0 407091
+0 407091
+
+fn=(1862)
+0 25125647
+cfn=(1864) TriePatriciaNoeud<char, UnorderedMap>* SuppressionNoeud<char, UnorderedMap>(TriePatriciaNoeud<char, UnorderedMap>*, std::vector<char, std::allocator<char> >, long)
+calls=407091 0 
+0 14411205936
+0 2035455
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=407091 0 
+0 37045281
+0 407091
+0 2849637
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=407091 0 
+0 43965828
+0 407091
+0 1628364
+
+fn=(1282)
+0 745177292
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=11293418 0 
+0 1219689144
+0 11293418
+0 337033130
+
+fn=(1848)
+0 19392457
+cfn=(1264)
+calls=150253 0 
+0 30954271
+0 2854807
+cfn=(1850)
+calls=150253 0 
+0 4269666100
+0 17640160
+cfn=(1850)
+calls=1102510 0 
+0 3534242619
+0 3256784
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=150252 0 
+0 13672932
+0 150252
+0 2505524
+cfn=(1854)
+calls=1252762 0 
+0 12527620
+0 15534646
+cob=(3)
+cfi=(108)
+cfn=(1270)
+calls=1102510 53 
+0 26583484
+0 1102510
+0 1102510
+
+fn=(1849)
+0 83637624
+cfn=(1264)
+calls=56931 0 
+0 11717096
+0 1081689
+cfn=(1851)
+calls=56931 0 
+0 1489895336
+0 88059664
+cfn=(1851)
+calls=5503729 0 
+0 8879194289
+0 11405975
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=56931 0 
+0 5180721
+0 56931
+0 11121320
+cfn=(1854)
+calls=5560660 0 
+0 55606600
+0 72003925
+cob=(3)
+cfi=(108)
+cfn=(1270)
+calls=5503729 53 
+0 132678342
+0 5503729
+0 5503729
+
+fn=(1264)
+0 63185463
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=7020607 0 
+0 766926647
+0 7020607
+0 35103035
+cob=(3)
+cfi=(108)
+cfn=(1270)
+calls=7020607 53 
+0 171500878
+0 7020607
+0 35103035
+
+fn=(464)
+cob=(3)
+cfi=(78)
+cfn=(472)
+calls=0 133 
+0 14636506360
+
+fn=(1856)
+0 30293480
+cfn=(1858) std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::~_Hashtable()
+calls=1252762 0 
+0 4791585883
+0 2505526
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=1252763 0 
+0 114001433
+0 1252763
+0 18178003
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=1567219 0 
+0 142616929
+0 1567219
+0 9609960
+
+fn=(1857)
+0 153466947
+cfn=(1859) std::_Hashtable<char, std::pair<char const, Case<char, UnorderedMap> >, std::allocator<std::pair<char const, Case<char, UnorderedMap> > >, std::__detail::_Select1st, std::equal_to<char>, std::hash<char>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::~_Hashtable()'2
+calls=5560676 0 
+0 6933071091
+0 11121356
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=5560678 0 
+0 506021698
+0 5560678
+0 99960137
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=9738719 0 
+0 886223437
+0 9738719
+0 42385472
+
+fn=(1858)
+0 3774450
+cfn=(1860)
+calls=1258150 0 
+0 4661781466
+0 10065208
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=1258151 0 
+0 118097977
+0 1258151
+
+fn=(1859)
+0 16682028
+cfn=(1861)
+calls=5560676 0 
+0 6358954919
+0 44485424
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=5560678 0 
+0 507388042
+0 5560678
+
+fn=(1864)
+0 10991467
+cfn=(1846)
+calls=407092 0 
+0 21982968
+0 6825580
+cfn=(1846)
+calls=1365116 0 
+0 1378950249
+0 7088828
+cfn=(1856)
+calls=1772207 0 
+0 778587314
+0 12524854
+cfn=(1272)
+calls=407091 0 
+0 14307214
+0 4070814
+cfn=(1294)
+calls=407067 0 
+0 8964555
+0 27116883
+cfn=(1865) TriePatriciaNoeud<char, UnorderedMap>* SuppressionNoeud<char, UnorderedMap>(TriePatriciaNoeud<char, UnorderedMap>*, std::vector<char, std::allocator<char> >, long)'2
+calls=381849 0 
+0 11674131755
+0 2035340
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=407068 0 
+0 37043188
+0 407068
+0 2078627
+cfn=(1865)
+calls=25218 0 
+0 376854242
+0 1170765
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=381849 0 
+0 41239692
+0 381849
+0 1603050
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=25218 0 
+0 2723544
+0 25218
+0 100872
+
+fn=(1865)
+0 32100844
+cfn=(1846)
+calls=1153029 0 
+0 3802902081
+0 5159930
+cfn=(1846)
+calls=1031986 0 
+0 3556844374
+0 8740060
+cfn=(1856)
+calls=2185015 0 
+0 4331700366
+0 18267334
+cfn=(1858)
+calls=5388 0 
+0 3391369
+0 16164
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=5388 0 
+0 490308
+0 5388
+0 2940096
+cfn=(1272)
+calls=978236 0 
+0 30686958
+0 9048720
+cfn=(1294)
+calls=794826 0 
+0 17917434
+0 49744130
+cfn=(1865)
+calls=596387 0 
+0 5234041598
+0 3950440
+cob=(7)
+cfi=(75)
+cfn=(1184)
+calls=790088 0 
+0 71898004
+0 790088
+0 12537775
+cfn=(1865)
+calls=193701 0 
+0 655250652
+0 1992338
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=596387 0 
+0 64410545
+0 596387
+0 2966651
+cob=(7)
+cfi=(75)
+cfn=(946)
+calls=193701 0 
+0 20919708
+0 193701
+0 774804
+
+ob=(4)
+fl=(54)
+fn=(1262)
+37 6813423
++1 6813423
+
+totals: 14636506360
